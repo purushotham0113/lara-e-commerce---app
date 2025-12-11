@@ -34,6 +34,7 @@ const UserAvatar = ({ name, size = "w-8 h-8", textSize = "text-sm" }) => {
 
 export const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
+  console.log("user ", user)
   const cartItems = useSelector((state) => state.cart.cartItems);
   const wishlistItems = useSelector((state) => state.wishlist?.wishlistItems || []);
   const dispatch = useDispatch();
