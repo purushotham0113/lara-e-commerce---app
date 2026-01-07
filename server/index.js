@@ -27,10 +27,10 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     if (process.env.CLIENT_URL && origin !== process.env.CLIENT_URL) {
-       // In strict production, fail. In dev/demo, might be lenient.
-       // For this audit, we allow reflection if CLIENT_URL is not set, otherwise strict.
-       if (!process.env.CLIENT_URL) return callback(null, true);
-       return callback(new Error('Not allowed by CORS'), false);
+      // In strict production, fail. In dev/demo, might be lenient.
+      // For this audit, we allow reflection if CLIENT_URL is not set, otherwise strict.
+      if (!process.env.CLIENT_URL) return callback(null, true);
+      return callback(new Error('Not allowed by CORS'), false);
     }
     return callback(null, true);
   },
@@ -40,6 +40,7 @@ app.use(cors({
 app.use(express.json()); // Body parser
 app.use(morgan('dev')); // HTTP Logger
 app.use(rateLimiter); // Rate limiting
+
 
 // 4. Mount API Routes
 app.use('/api', routes);
