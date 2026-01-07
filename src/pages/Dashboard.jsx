@@ -344,7 +344,8 @@ const Dashboard = () => {
                                             Orders
                                         </p>
                                         <h3 className="text-2xl font-bold mt-1">
-                                            {stats.ordersCount}
+
+                                            {stats.orderCount}
                                         </h3>
                                     </div>
                                     <div className="p-2 bg-blue-100 text-blue-600 rounded">

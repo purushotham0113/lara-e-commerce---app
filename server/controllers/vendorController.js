@@ -16,20 +16,20 @@ const getVendorStats = asyncHandler(async (req, res) => {
     let lowStockCount = 0;
     products.forEach(p => {
         p.variants.forEach(v => {
-            if(v.stock < 5) lowStockCount++;
+            if (v.stock < 5) lowStockCount++;
         });
     });
 
     // 3. Vendor Orders & Revenue
     // Find orders where at least one item belongs to this vendor
     const orders = await Order.find({ 'orderItems.vendor': userId });
-    
+
     let totalRevenue = 0;
     let totalSales = 0; // Number of items sold
-    let ordersCount = orders.length;
+    let orderCount = orders.length;
 
     orders.forEach(order => {
-        if(order.isPaid) {
+        if (order.isPaid) {
             // Only count items belonging to this vendor
             const vendorItems = order.orderItems.filter(item => item.vendor.toString() === userId.toString());
             vendorItems.forEach(item => {
@@ -46,7 +46,7 @@ const getVendorStats = asyncHandler(async (req, res) => {
             lowStockCount,
             totalRevenue,
             totalSales,
-            ordersCount
+            orderCount
         }
     });
 });

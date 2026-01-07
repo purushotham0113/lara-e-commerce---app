@@ -51,7 +51,7 @@ export const updateProfile = createAsyncThunk('auth/updateProfile', async (userD
 });
 
 const initialState = {
-  user: null,
+  user: JSON.parse(localStorage.getItem('lara_user')) || null,
   loading: false,
   error: null,
   success: false,
